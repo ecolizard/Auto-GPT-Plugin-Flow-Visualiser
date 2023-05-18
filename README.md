@@ -15,12 +15,12 @@ sudo yum install zip
 ```
 Mac / Linux / WSL
 ```
-cd plugins && git clone https://github.com/ecolizard/Auto-GPT-Plugin-Flow-Visualiser.git && zip -r ./Auto-GPT-Visualiser-Plugin.zip ./Auto-GPT-Todoist-Plugin && rm -rf ./Auto-GPT-Visualiser-Plugin && cd .. && ./run.sh --install-plugin-deps
+cd plugins && git clone https://github.com/ecolizard/Auto-GPT-Plugin-Flow-Visualiser.git && zip -r ./Auto-GPT-Plugin-Flow-Visualiser.zip ./Auto-GPT-Todoist-Plugin && rm -rf ./Auto-GPT-Plugin-Flow-Visualiser && cd .. && ./run.sh --install-plugin-deps
 
 ```
 Windows, Powershell
 ```
-cd plugins; git clone https://github.com/ecolizard/Auto-GPT-Plugin-Flow-Visualiser.git; Compress-Archive -Path .\Auto-GPT-Visualiser-Plugin -DestinationPath .\Auto-GPT-Visualiser-Plugin.zip; Remove-Item -Recurse -Force .\Auto-GPT-Visualiser-Plugin; cd ..
+cd plugins; git clone https://github.com/ecolizard/Auto-GPT-Plugin-Flow-Visualiser.git; Compress-Archive -Path .\Auto-GPT-Plugin-Flow-Visualiser -DestinationPath .\Auto-GPT-Plugin-Flow-Visualiser.zip; Remove-Item -Recurse -Force .\Auto-GPT-Plugin-Flow-Visualiser; cd ..
 ```
 
 

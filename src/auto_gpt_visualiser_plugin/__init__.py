@@ -1,9 +1,10 @@
 """This is a template for Auto-GPT plugins."""
 import abc
+import re
 from typing import Any, Dict, List, Optional, Tuple, TypeVar, TypedDict
 from venv import logger
 
-from abstract_singleton import AbstractSingleton, Singleton
+from auto_gpt_plugin_template import AutoGPTPluginTemplate
 from dotenv import load_dotenv
 
 PromptGenerator = TypeVar("PromptGenerator")
@@ -19,7 +20,7 @@ def remove_color_codes(s: str) -> str:
     return ansi_escape.sub("", s)
 
 
-class AutoGPTPluginTemplate(AbstractSingleton, metaclass=Singleton):
+class AutoGPTPluginTemplate(AutoGPTPluginTemplate):
     """
     This is a template for Auto-GPT plugins.
     """
