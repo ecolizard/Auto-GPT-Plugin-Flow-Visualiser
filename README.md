@@ -20,7 +20,7 @@ cd plugins && git clone https://github.com/ecolizard/Auto-GPT-Plugin-Flow-Visual
 ```
 Windows, Powershell
 ```
-cd plugins; git clone https://github.com/ecolizard/Auto-GPT-Plugin-Flow-Visualiser.git; Compress-Archive -Path .\Auto-GPT-Todoist-Plugin -DestinationPath .\Auto-GPT-Visualiser-Plugin.zip; Remove-Item -Recurse -Force .\Auto-GPT-Visualiser-Plugin; cd ..
+cd plugins; git clone https://github.com/ecolizard/Auto-GPT-Plugin-Flow-Visualiser.git; Compress-Archive -Path .\Auto-GPT-Visualiser-Plugin -DestinationPath .\Auto-GPT-Visualiser-Plugin.zip; Remove-Item -Recurse -Force .\Auto-GPT-Visualiser-Plugin; cd ..
 ```
 
 
