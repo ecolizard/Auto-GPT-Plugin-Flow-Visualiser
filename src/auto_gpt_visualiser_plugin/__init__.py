@@ -1,8 +1,10 @@
 """This is a template for Auto-GPT plugins."""
 import abc
 from typing import Any, Dict, List, Optional, Tuple, TypeVar, TypedDict
+from venv import logger
 
 from abstract_singleton import AbstractSingleton, Singleton
+from dotenv import load_dotenv
 
 PromptGenerator = TypeVar("PromptGenerator")
 
@@ -10,6 +12,11 @@ PromptGenerator = TypeVar("PromptGenerator")
 class Message(TypedDict):
     role: str
     content: str
+
+
+def remove_color_codes(s: str) -> str:
+    ansi_escape = re.compile(r"\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])")
+    return ansi_escape.sub("", s)
 
 
 class AutoGPTPluginTemplate(AbstractSingleton, metaclass=Singleton):
@@ -22,6 +29,8 @@ class AutoGPTPluginTemplate(AbstractSingleton, metaclass=Singleton):
         self._name = "Auto-GPT-Plugin-Template"
         self._version = "0.1.0"
         self._description = "This is a template for Auto-GPT plugins."
+        self.telegram_api_key = os.getenv("TELEGRAM_API_KEY")
+        self.telegram_chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
     @abc.abstractmethod
     def can_handle_on_response(self) -> bool:
@@ -70,7 +79,7 @@ class AutoGPTPluginTemplate(AbstractSingleton, metaclass=Singleton):
 
     @abc.abstractmethod
     def on_planning(
-        self, prompt: PromptGenerator, messages: List[Message]
+            self, prompt: PromptGenerator, messages: List[Message]
     ) -> Optional[str]:
         """This method is called before the planning chat completion is done.
 
@@ -175,7 +184,7 @@ class AutoGPTPluginTemplate(AbstractSingleton, metaclass=Singleton):
 
     @abc.abstractmethod
     def pre_command(
-        self, command_name: str, arguments: Dict[str, Any]
+            self, command_name: str, arguments: Dict[str, Any]
     ) -> Tuple[str, Dict[str, Any]]:
         """This method is called before the command is executed.
 
@@ -212,7 +221,7 @@ class AutoGPTPluginTemplate(AbstractSingleton, metaclass=Singleton):
 
     @abc.abstractmethod
     def can_handle_chat_completion(
-        self, messages: Dict[Any, Any], model: str, temperature: float, max_tokens: int
+            self, messages: Dict[Any, Any], model: str, temperature: float, max_tokens: int
     ) -> bool:
         """This method is called to check that the plugin can
           handle the chat_completion method.
@@ -229,7 +238,7 @@ class AutoGPTPluginTemplate(AbstractSingleton, metaclass=Singleton):
 
     @abc.abstractmethod
     def handle_chat_completion(
-        self, messages: List[Message], model: str, temperature: float, max_tokens: int
+            self, messages: List[Message], model: str, temperature: float, max_tokens: int
     ) -> str:
         """This method is called when the chat completion is done.
 
@@ -246,7 +255,7 @@ class AutoGPTPluginTemplate(AbstractSingleton, metaclass=Singleton):
 
     @abc.abstractmethod
     def can_handle_text_embedding(
-        self, text: str
+            self, text: str
     ) -> bool:
         """This method is called to check that the plugin can
           handle the text_embedding method.
@@ -255,10 +264,10 @@ class AutoGPTPluginTemplate(AbstractSingleton, metaclass=Singleton):
           Returns:
               bool: True if the plugin can handle the text_embedding method."""
         return False
-    
+
     @abc.abstractmethod
     def handle_text_embedding(
-        self, text: str
+            self, text: str
     ) -> list:
         """This method is called when the chat completion is done.
         Args:
@@ -278,7 +287,7 @@ class AutoGPTPluginTemplate(AbstractSingleton, metaclass=Singleton):
 
         Returns:
             bool: True if the plugin can handle the user_input method."""
-        return False
+        return True
 
     @abc.abstractmethod
     def user_input(self, user_input: str) -> str:
@@ -291,7 +300,15 @@ class AutoGPTPluginTemplate(AbstractSingleton, metaclass=Singleton):
             str: The user input.
         """
 
-        pass
+        user_input = remove_color_codes(user_input)
+        # if the user_input is too long, shorten it
+        if len(user_input) > 2000:
+            user_input = user_input[:2000] + "..."
+
+        # log the user input
+        logger.info(f"User input: {user_input}")
+
+        # return self.telegram_utils.ask_user(prompt=user_input)
 
     @abc.abstractmethod
     def can_handle_report(self) -> bool:
@@ -300,7 +317,7 @@ class AutoGPTPluginTemplate(AbstractSingleton, metaclass=Singleton):
 
         Returns:
             bool: True if the plugin can handle the report method."""
-        return False
+        return True
 
     @abc.abstractmethod
     def report(self, message: str) -> None:
@@ -309,4 +326,12 @@ class AutoGPTPluginTemplate(AbstractSingleton, metaclass=Singleton):
         Args:
             message (str): The message to report.
         """
-        pass
+        message = remove_color_codes(message)
+
+        logger.info(f"User input: {message}")
+
+        # if the message is too long, shorten it
+        if len(message) > 2000:
+            message = message[:2000] + "..."
+
+        # self.telegram_utils.send_message(message=message)
