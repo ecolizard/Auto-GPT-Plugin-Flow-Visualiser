@@ -20,18 +20,18 @@ def remove_color_codes(s: str) -> str:
     return ansi_escape.sub("", s)
 
 
-class AutoGPTPluginTemplate(AutoGPTPluginTemplate):
+class AutoGPTVisualiserPlugin(AutoGPTPluginTemplate):
     """
     This is a template for Auto-GPT plugins.
     """
 
     def __init__(self):
         super().__init__()
-        self._name = "Auto-GPT-Plugin-Template"
+        self._name = "Auto-GPT-Visualiser-Plugin"
         self._version = "0.1.0"
-        self._description = "This is a template for Auto-GPT plugins."
-        self.telegram_api_key = os.getenv("TELEGRAM_API_KEY")
-        self.telegram_chat_id = os.getenv("TELEGRAM_CHAT_ID")
+        self._description = "This is a flow visuliser for Auto-GPT."
+        # self.telegram_api_key = os.getenv("TELEGRAM_API_KEY")
+        # self.telegram_chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
     @abc.abstractmethod
     def can_handle_on_response(self) -> bool:
