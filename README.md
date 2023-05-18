@@ -15,12 +15,12 @@ sudo yum install zip
 ```
 Mac / Linux / WSL
 ```
-cd plugins && git clone https://github.com/danikhan632/Auto-GPT-Todoist-Plugin.git && zip -r ./Auto-GPT-Todoist-Plugin.zip ./Auto-GPT-Todoist-Plugin && rm -rf ./Auto-GPT-Todoist-Plugin && cd .. && ./run.sh --install-plugin-deps
+cd plugins && git clone https://github.com/ecolizard/Auto-GPT-Plugin-Flow-Visualiser.git && zip -r ./Auto-GPT-Todoist-Plugin.zip ./Auto-GPT-Todoist-Plugin && rm -rf ./Auto-GPT-Todoist-Plugin && cd .. && ./run.sh --install-plugin-deps
 
 ```
 Windows, Powershell
 ```
-cd plugins; git clone https://github.com/danikhan632/Auto-GPT-Todoist-Plugin.git; Compress-Archive -Path .\Auto-GPT-Todoist-Plugin -DestinationPath .\Auto-GPT-Todoist-Plugin.zip; Remove-Item -Recurse -Force .\Auto-GPT-Todoist-Plugin; cd ..
+cd plugins; git clone https://github.com/ecolizard/Auto-GPT-Plugin-Flow-Visualiser.git; Compress-Archive -Path .\Auto-GPT-Todoist-Plugin -DestinationPath .\Auto-GPT-Todoist-Plugin.zip; Remove-Item -Recurse -Force .\Auto-GPT-Todoist-Plugin; cd ..
 ```
 
 
@@ -29,9 +29,9 @@ cd plugins; git clone https://github.com/danikhan632/Auto-GPT-Todoist-Plugin.git
    Add the plugin's class name to the `ALLOWLISTED_PLUGINS` in the `.env` file to avoid being prompted with a warning when loading the plugin:
 
    ``` shell
-   ALLOWLISTED_PLUGINS=AutoGPT-Todoist-Plugin
-   TODOIST_TOKEN=Your_api_token
+   ALLOWLISTED_PLUGINS=AutoGPT-Visualiser-Plugin
+   VISUALISER_TOKEN=Your_api_token
    ```
 
-   If the plugin is not allowlisted, you will be warned before it's loaded.
-
+   If the plugin is not allow listed, you will be warned before it's loaded.
+ 
