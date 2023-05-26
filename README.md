@@ -1,3 +1,5 @@
+https://www.paypal.com/donate/?hosted_button_id=WTNDSZMG4C6LG
+
 # Auto-GPT-Visualiser
 
 A starting point for developing your own external plug-in for Auto-GPT
