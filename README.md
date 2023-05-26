@@ -1,4 +1,4 @@
-https://www.paypal.com/donate/?hosted_button_id=WTNDSZMG4C6LG
+[donate](https://www.paypal.com/donate/?hosted_button_id=WTNDSZMG4C6LG)
 
 # Auto-GPT-Visualiser
 
